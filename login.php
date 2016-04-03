@@ -35,7 +35,7 @@
 
 <button type="button" onclick="location.href='forgotPassword.php';">Forgot Password</button>
 
-<button type="button" onclick="location.href='register.php';">Create an Account</button>
+<button type="button" onclick="location.href='createAccount.php';">Create an Account</button>
 
 <br />
 

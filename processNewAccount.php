@@ -8,6 +8,10 @@
       if(isset($_POST['email']) && isset($_POST['password'])) {
         $email = $_POST['email'];
         $password = $_POST['password'];
+        $street = $_POST['street'];
+        $city = $_POST['city'];
+        $state = $_POST['state'];
+        $zipcode = $_POST['zipcode'];
         echo "New $email and $password";
 
         //Database parameters
@@ -21,7 +25,9 @@
 			  if ($db->connect_error){
 				  die("Connection error: " . $db->connect_error);
 			  }
-        
+
+        $db->query("insert into user values(\"$email\", \"$password\", \"$street\",
+        \"$city\", \"$state\", \"$zipcode\")");
       }
     ?>
   </body>

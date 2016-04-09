@@ -22,10 +22,22 @@
       echo "<br />";
 
 
- 	  	$query = "select * from user where user.email= '$user' and user.password = '$hashed_password'"; //see if the user name and password were foudn in the table
- 	  	$result = $db->query($query);
+
+      $stmt = $db->prepare("select * from user where user.email= ? and user.password = ?");
+
+      $stmt->bind_param("ss", $user, $hashed_password);
+      
+      $stmt->execute();
+
+
+ 	  	// $query = "select * from user where user.email= '$user' and user.password = '$hashed_password'"; //see if the user name and password were foudn in the table
+ 	  	// $result = $s->query($query);
+      $result = $stmt->get_result();
  	  	$rows = $result->num_rows;
 
+
+      mysqli_stmt_close($stmt);
+      mysqli_close($mysqli);
 
  	  	if ($rows < 1){ //there were no rows found with this email and password
  			$_SESSION['loginError'] = "The email or password that you used to login were not found in our server. Please try again. <br />";
@@ -40,6 +52,8 @@
 	 		header("Location: index.html"); //redirect to the successful login page
 
 	 	}
+
+
 
 
 }

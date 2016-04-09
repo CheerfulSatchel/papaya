@@ -30,9 +30,18 @@
 				  die("Connection error: " . $db->connect_error);
 			  }
 
-        $db->query("insert into user values(\"$email\", \"$hashed_password\", \"$street\",
-        \"$city\", \"$state\", \"$zipcode\")");
+        // $db->query("insert into user values(\"$email\", \"$hashed_password\", \"$street\",
+        // \"$city\", \"$state\", \"$zipcode\")");
 
+        $stmt = $db->prepare("insert into user values(?, ?, ?, ?, ?, ?)"); //Make a prepared statement to avoid sql injection attacks
+
+        $stmt->bind_param("ssssss",$email, $hashed_password, $street, $city, $state, $zipcode); //Need to have 7 parameters, the types (aka "s" for string or "d" for digit), and the variables you want to enter
+
+        $stmt->execute();
+
+        $stmt->close();
+        $db->close();
+ 
         $_SESSION['registerSuccessful'] = "You have created a new account!"; //Creates a message notifying the user that they created a new account
 
         header("Location: login.php"); //redirect to the successful login page

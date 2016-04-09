@@ -1,23 +1,29 @@
 <!DOCTYPE html>
 <html>
  <head>
-
-
-  <link rel="stylesheet" type="text/css" href="loginStyle.css"/>
-
-<script src="http://code.jquery.com/jquery-latest.js"></script>
-<script type="text/javascript">
-
-
-
-
-
-</script>
-
   <title>Login</title>
  </head>
  <body>
 	
+<?php
+session_start();
+
+
+if (isset($_SESSION['loginError'])) { //Displays the message for when the user wasn't able to login b/c they entered the wrong email or password
+	print $_SESSION['loginError'];
+	unset($_SESSION['loginError']);
+}
+
+
+if (isset($_SESSION['registerSuccessful'])) { //Displays the message for when a new account has been registered
+	print $_SESSION['registerSuccessful'];
+	unset($_SESSION['registerSuccessful']);
+}
+
+if (isset($_SESSION['login'])) {
+	header("Location: index.html"); //redirect to the successful login page
+}
+	?>
 
 
 

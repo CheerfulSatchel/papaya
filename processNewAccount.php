@@ -5,14 +5,18 @@
   </head>
   <body>
     <?php
+    session_start();
+
       if(isset($_POST['email']) && isset($_POST['password'])) {
         $email = $_POST['email'];
         $password = $_POST['password'];
+        $hashed_password = md5($password); //Hashes the password using the default crypt hash algorithm
+        // echo $hashed_password;
         $street = $_POST['street'];
         $city = $_POST['city'];
         $state = $_POST['state'];
         $zipcode = $_POST['zipcode'];
-        echo "New $email and $password";
+        // echo "New $email and $password";
 
         //Database parameters
         $server = "stardock.cs.virginia.edu";
@@ -26,9 +30,16 @@
 				  die("Connection error: " . $db->connect_error);
 			  }
 
-        $db->query("insert into user values(\"$email\", \"$password\", \"$street\",
+        $db->query("insert into user values(\"$email\", \"$hashed_password\", \"$street\",
         \"$city\", \"$state\", \"$zipcode\")");
+
+        $_SESSION['registerSuccessful'] = "You have created a new account!"; //Creates a message notifying the user that they created a new account
+
+        header("Location: login.php"); //redirect to the successful login page
+
+
       }
+
     ?>
   </body>
 </html>

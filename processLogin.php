@@ -48,7 +48,12 @@
   	 		header("Location: login.php"); //redirect to the login page
   	 	}
 
+      if (($_POST['email'].trim()) == "admin@gmail.com") {
+        header("Location: admin.html");
+      }
+
 	 	else{
+
 	 		header("Location: index.html"); //redirect to the successful login page
 
 	 	}

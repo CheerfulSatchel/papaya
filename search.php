@@ -10,8 +10,6 @@
 			FROM video_game
 			WHERE title LIKE '%{$keywords}%' 	
 			");
-
-	}
 			?>
 
 			<div class="result-count">
@@ -28,3 +26,4 @@
 			</div>	
 		}
 	}
+}

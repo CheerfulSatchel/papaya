@@ -13,7 +13,7 @@
 			?>
 
 			<div class="result-count">
-			Found <?php echo $query->num_rows; ?> results;
+			Found <?php echo $query->num_rows; ?> results, hooray!;
 			</div>
 
 <?php

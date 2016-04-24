@@ -22,8 +22,9 @@
 		while($r = $query->fetch_object()){
 		?>
 			<div class="result">
-			<a href="#"><?php echo$r->title; ?></a>
+			<a href="#"><?php echo $r->title; ?></a>
 			</div>	
+		<?php
 		}
 	}
 }

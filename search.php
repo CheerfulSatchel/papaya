@@ -1,10 +1,34 @@
+<html>
+	<head>
+		<title>
+			Search Results
+		</title>
+	</head>
+	
+	<style>
+			a:link{
+				color: Green;
+				text-decoration: none;
+			}
+			a:hover{
+				color: Green;
+				text-decoration: underline;
+			}
+			a:active{
+				color: Blue;
+				text-decoration: none
+			}
+			a:visited{
+				color: Green;
+				text-decoration:none;
+			}
+		</style>
 <?php
 
-	include 'databaseinfo.php';
+	include 'databaseInfo.php';
 	 
 	if(isset($_GET['keywords'])){
 		$keywords = $db->escape_string($_GET['keywords']);
-		
 		$query = $db->query("
 			SELECT title
 			FROM video_game
@@ -27,4 +51,6 @@
 		<?php
 		}
 	}
-}
+} ?>
+
+</html>

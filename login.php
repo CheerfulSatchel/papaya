@@ -3,6 +3,9 @@
  <head>
   <title>Login</title>
  </head>
+ <link rel="stylesheet" href="css/skel.css" />
+ <link rel="stylesheet" href="css/style.css" />
+ <link rel="stylesheet" href="css/style-xlarge.css" />
  <body>
 	
 <?php
@@ -39,9 +42,9 @@ if (isset($_SESSION['login'])) {
 	<br /> </br>
 	
 
-<button type="button" onclick="location.href='forgotPassword.php';">Forgot Password</button>
+<input type="button" onclick="location.href='forgotPassword.php';" value = "Forgot Password">
 
-<button type="button" onclick="location.href='createAccount.php';">Create an Account</button>
+<input type="button" onclick="location.href='createAccount.php';" value = "Create an Account">
 
 <br />
 

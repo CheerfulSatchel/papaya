@@ -32,8 +32,8 @@
 					<ul>
 						<li><a href="index.html">Home</a></li>
 						<li><a href="../login.php">Login</a></li>
-						<li><a href="#">Logout</a></li>
 						<li><a href ="#">My Cart</a></li>
+						<li><a href="#">Logout</a></li>
  
 					</ul>
 				</nav>
@@ -45,8 +45,12 @@
 				
 				<ul class="actions">
 					<li>
-						<!--a href="#" class="button big">Learn More</a-->
-						<input id="search-bar" type="text" placeholder="Search for something kool!">
+						<form action="search.php" method="get">
+						
+							<input id="search-bar" type="text" placeholder="Search for something kool!" autocomplete="on">
+							<input type="submit" value="Search">
+						</form>
+
 					</li>
 				</ul>
 			</section>
@@ -60,7 +64,7 @@
 					</header>
 					<div class="row 200%">
 						<section class="4u 12u$(small)">
-							<i class="icon big rounded fa-clock-o" placeholder=""></i>
+							<i class="icon big rounded fa-clock-o"></i>
 							<p>
 								Music
 							</p>

@@ -3,13 +3,12 @@
 	include 'databaseinfo.php';
 
 	if(isset($_GET['keywords'])){
-		$keywords = $db->escape_string($_GET['keywords']);
+		foo = "poop $keywords = $db->escape_string($_GET['keywords'])";
 		
 		$query = $db->query("
 			SELECT title
 			FROM video_game
-			WHERE body LIKE '%{$keywords}%'
-			OR title LIKE '%{$keywords}%' 	
+			WHERE title LIKE '%{$keywords}%' 	
 			");
 			?>
 

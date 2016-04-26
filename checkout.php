@@ -114,6 +114,24 @@ $.ajax({
 
 
 function finalCheckout() {
+  var email = $_SESSION['email'];
+
+  var email = arguments[0];
+   $.ajax({ //makes the directory update with the newest row
+       url: 'readBuy.php',
+       type: 'POST',
+       dataType: 'json',
+       data: ({userName: email}),
+       success: function (response) {
+
+       },
+       error:function(exception){alert(exception)}
+    });
+
+
+
+
+
 
   window.location.replace("index.html");
 }
@@ -147,7 +165,7 @@ function finalCheckout() {
              <button type="button">Back</button>
 	         </div>
            <div id="buttonRight">
-             <button type="button" onClick='finalCheckout()'>Checkout</button>
+             <button type="button" onClick='finalCheckout(<?php session_start(); echo $_SESSION['email'] ?>)'>Checkout</button>
 	         </div>
         </td>
     </tr>

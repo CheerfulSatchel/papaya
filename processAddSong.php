@@ -5,35 +5,31 @@
 	include 'databaseinfo.php'; //database information to access MySQL
 
 
-  if (isset($_POST['gameName'])){
-    $gameName = $_POST['gameName'];
+  if (isset($_POST['songName'])){
+    $songName = $_POST['songName'];
 
   }
 
-  if (isset($_POST['publisher'])){	
-    $publisher = $_POST['publisher'];
+  if (isset($_POST['artist'])){	
+    $artist = $_POST['artist'];
   }
 
-  if (isset($_POST['rating'])){
-    $rating = $_POST['rating'];
+  if (isset($_POST['length'])){
+    $length = $_POST['length'];
   }
 
-  if (isset($_POST['platform'])){
-	 $platform = $_POST['platform'];
+  if (isset($_POST['release_year'])){
+	 $release_year = $_POST['release_year'];
   }
-
-  if (isset($_POST['genre'])){
-	 $genre = $_POST['genre'];
-   }
 
   if (isset($_POST['price'])){
-  $price = $_POST['price'];
-}
+	 $price = $_POST['price'];
+   }
 
- 
   if (isset($_POST['quantity'])){
   $quantity = $_POST['quantity'];
 }
+
 
 
     $itemQuery = $db->prepare("INSERT INTO item(price, quantity) VALUES (?, ?)"); //Insert the price and quantity into the item table. The item_id column automatically increments every time an entry is added.
@@ -49,16 +45,16 @@
 
 
 
-    $videoGameQuery = $db->prepare("INSERT INTO video_game(item_id, title, publisher, rating, platform, genre) values(?, ?, ?, ?, ?, ?)");
+    $songQuery = $db->prepare("INSERT INTO song(item_id, name, artist, length, release_year) values(?, ?, ?, ?, ?)");
 
-    $videoGameQuery->bind_param("dsssss", $itemId, $gameName, $publisher, $rating, $platform, $genre); 
+    $songQuery->bind_param("dssss", $itemId, $songName, $artist, $length, $release_year); 
 
-    $videoGameQuery->execute();
+    $songQuery->execute();
 
         // printf("Can't enter data into the video game table: %s.\n", $db->error);
 
 
-    $videoGameQuery->close();
+    $songQuery->close();
     $itemQuery->close();
     $db->close();
 

@@ -3,6 +3,14 @@
  <head>
   <title>Login</title>
  </head>
+ <style>
+ .center {
+    margin: auto;
+    width: 60%;
+    border: 3px solid #73AD21;
+    padding: 10px;
+}
+ </style>
  <link rel="stylesheet" href="css/skel.css" />
  <link rel="stylesheet" href="css/style.css" />
  <link rel="stylesheet" href="css/style-xlarge.css" />
@@ -29,7 +37,7 @@ if (isset($_SESSION['login'])) {
 	?>
 
 
-
+	<div class = "center">
 
  	<br />
  	<form align="left" action="processlogin.php" method="POST">
@@ -40,7 +48,6 @@ if (isset($_SESSION['login'])) {
 		<input type = "submit" name = 'submit' value = "Login"> </form>
 	
 	<br /> </br>
-	
 
 <input type="button" onclick="location.href='forgotPassword.php';" value = "Forgot Password">
 
@@ -49,7 +56,7 @@ if (isset($_SESSION['login'])) {
 <br />
 
 <br />
-
+</div>
 
 </body>
 </html>

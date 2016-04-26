@@ -4,25 +4,9 @@
 			Search Results
 		</title>
 	</head>
-	
-	<style>
-			a:link{
-				color: Green;
-				text-decoration: none;
-			}
-			a:hover{
-				color: Green;
-				text-decoration: underline;
-			}
-			a:active{
-				color: Blue;
-				text-decoration: none
-			}
-			a:visited{
-				color: Green;
-				text-decoration:none;
-			}
-		</style>
+		<link rel="stylesheet" href="css/skel.css" />
+ 		<link rel="stylesheet" href="css/style.css" />
+ 		<link rel="stylesheet" href="css/style-xlarge.css" />
 <?php
 
 	include 'databaseInfo.php';
@@ -34,10 +18,16 @@
 			FROM video_game
 			WHERE title LIKE '%{$keywords}%' 	
 			");
+		$query2 = $db->query("
+			SELECT name
+			FROM CD
+			WHERE name LIKE '%{$keywords}%' 
+			");
 			?>
 
 			<div class="result-count">
-			Found <?php echo $query->num_rows; ?> results, hooray!;
+			Found <?php echo $query->num_rows; ?> results, hooray!
+			Found <?php echo $query2->num_rows; ?> results, hooray!
 			</div>
 
 <?php

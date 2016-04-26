@@ -14,12 +14,15 @@
 
     $itemQuery->execute();
 
+    $itemQuery->close();
+    $db->close();
+
 
 ?>
 
 <script type="text/javascript">
 
-    setTimeout(updateTable, 3000); //Allows the database time to process the update
+    setTimeout(updateTable, 10000); //Allows the database time to process the update
 
 
      function updateTable() { //Ajax call to update the table to read by the user

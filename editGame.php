@@ -20,8 +20,7 @@
 
     }
 
-    function submit() { //Occurs when the "Edit Information" button is pushed and replaces the current form (which cannot be editted) with another form from editMoreInfo.php using ajax
-
+    function submitEdit() { //Occurs when the "Edit Information" button is pushed and replaces the current form (which cannot be editted) with another form from editMoreInfo.php using ajax
 
     window.parent.$("#editGameWindow").data("kendoWindow").close(); //Closest the Kendo Window after Ok in the alert box is clicked
 
@@ -29,14 +28,14 @@
         $.ajax({ //submits the values that were entered into the JavaScript form above by the user to be processed by processCreate.php
           type: "POST",
           url:"processEditGame.php",
-          data: {id: <?php echo $_GET["id"]?>, gameName: $("#gameName").val(), publisher: $("#publisher").val(), rating: $("#rating").val(), platform: $("#platform").val(), genre: $("#genre").val(), price: $("#price").val(), quantity: $("#quantity").val()},
+          data: {id: <?php echo $_GET["id"]?>, gameName: $("#editgameName").val(), publisher: $("#editpublisher").val(), rating: $("#editrating").val(), platform: $("#editplatform").val(), genre: $("#editgenre").val(), price: $("#editprice").val(), quantity: $("#editquantity").val()},
           dataType: 'html',
           success:function(data) {
-                alert('You have updated ' + $("#gameName").val() + '!');
-  	            ($("#test")).html(data); //changes the contents of the table body to add the html rows filled in with the data from the JSON object
+                alert('You have updated ' + $("#editgameName").val() + '!');
+
 
           }
-       });
+       });//
 
         setTimeout(updateTable, 1000); //Allows the database time to process the update
 
@@ -49,7 +48,7 @@
             success: function (response) {
             var trHTML = "";
             $.each(response, function (i, val) {
-                trHTML += "<tr><td>" + val.title + "</td><td>"  + val.publisher + "</td><td>"  + val.rating + "</td><td>" + val.platform + "</td><td>" + val.genre + "</td><td>" + val.price + "</td><td>" + val.quantity + "</td><td>" + "<div class='btn-group'> <button id='personal-" + val.item_id + "' type='button' class='btn-md' onClick='personalClick(" + val.item_id + ")'>More Information</button> <button id='edit-" + val.item_id + "' type='button' class='btn-md' onClick='editClick(" + val.item_id + ")'>Edit</button> <button id='delete-" + val.item_id + "' type='button' class='btn-md' onClick='deleteClick(" + val.item_id + ")'>Delete</button></div> </td>" +  "</tr>";
+                trHTML += "<tr><td>" + val.title + "</td><td>"  + val.publisher + "</td><td>"  + val.rating + "</td><td>" + val.platform + "</td><td>" + val.genre + "</td><td>" + val.price + "</td><td>" + val.quantity + "</td><td>" + "<div class='btn-group'> <button id='edit-" + val.item_id + "' type='button' class='btn-md' onClick='editClick(" + val.item_id + ")'>Edit This Entry</button> <button id='delete-" + val.item_id + "' type='button' class='btn-md' onClick='deleteClick(" + val.item_id + ")'>Delete</button></div> </td>" +  "</tr>";
 
             });
             ($("#table tbody")).html(trHTML); //changes the contents of the table body to add the html rows filled in with the data from the JSON object
@@ -132,6 +131,10 @@ if (isset($_GET["id"])) { //Check if the get variable is empty and if not, do th
 
 	   	$quantity = $data['quantity'];
 
+    $stmt->close();
+    $db->close();
+
+
 }
     ?>
 
@@ -140,11 +143,11 @@ if (isset($_GET["id"])) { //Check if the get variable is empty and if not, do th
     <windowTitle>Video Game Information</windowTitle>
     <form enctype="multipart/form-data">
 
-    <label>Game Name*  </label> <input type="text" id="gameName" value='<?php echo $title ?>'> </br> </br>
+    <label>Game Name*  </label> <input type="text" id="editgameName" value='<?php echo $title ?>'> </br> </br>
 
-        <label>Publisher  </label> <input type="text" id="publisher"  value='<?php echo $publisher ?>'> </br> </br>
+        <label>Publisher  </label> <input type="text" id="editpublisher"  value='<?php echo $publisher ?>'> </br> </br>
 
-        <label>Rating  </label> <select id="rating">
+        <label>Rating  </label> <select id="editrating">
 
         <option value="Early Childhood" <?php if ($rating=="Early Childhood") echo 'selected=\"selected\"'; ?>>Early Childhood</option>
         <option value="Everyone" <?php if ($rating=="Everyone") echo 'selected=\"selected\"'; ?>>Everyone</option>
@@ -155,7 +158,7 @@ if (isset($_GET["id"])) { //Check if the get variable is empty and if not, do th
     </select>
 
     </br> </br>
-        <label>Platform  </label> <select id="platform">
+        <label>Platform  </label> <select id="editplatform">
 
         <option value="Xbox One" <?php if( $platform =="Xbox One") echo 'selected=\"selected\"'; ?>>Xbox One</option>
         <option value="PS4" <?php if( $platform =="PS4") echo 'selected=\"selected\"'; ?>>PS4</option>
@@ -168,7 +171,7 @@ if (isset($_GET["id"])) { //Check if the get variable is empty and if not, do th
     </select>
 
     </br> </br>
-        <label>Genre  </label> <select id="genre"> 
+        <label>Genre  </label> <select id="editgenre"> 
         <option value="Action" <?php if( $genre =="Action") echo 'selected=\"selected\"'; ?>>Action</option>
         <option value="Action-Adventure"  <?php if( $genre =="Action-Adventure") echo 'selected=\"selected\"'; ?>>Action-Adventure</option>
         <option value="Adventure"  <?php if( $genre =="Adventure") echo 'selected=\"selected\"'; ?>>Adventure</option>
@@ -180,15 +183,15 @@ if (isset($_GET["id"])) { //Check if the get variable is empty and if not, do th
         </select>
         </br> </br>
 
-        <label>Price* </label> <input type="text" id="price" value='<?php echo $price ?>'> </br> </br>
-        <label>Quantity  </label> <input type="text" id="quantity" value='<?php echo $quantity ?>'> </br> </br>
+        <label>Price* </label> <input type="text" id="editprice" value='<?php echo $price ?>'> </br> </br>
+        <label>Quantity  </label> <input type="text" id="editquantity" value='<?php echo $quantity ?>'> </br> </br>
 
     </br> </br>
         
     </form>
 
         <div id='floatRight'>
-                        <button id="next" type="button" class="btn-md" onClick="submit()">Submit</button>
+                        <button id="next" type="button" class="btn-md" onClick="submitEdit()">Submit</button>
 
                         <button id="cancel" type="button" class="btn-md" onClick="cancel()">Cancel</button>
 

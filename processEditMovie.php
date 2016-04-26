@@ -7,21 +7,17 @@
 
   }  
 
-  if (isset($_POST['gameName'])){
-    $gameName = $_POST['gameName'];
+  if (isset($_POST['movieName'])){
+    $movieName = $_POST['movieName'];
 
   }
 
-  if (isset($_POST['publisher'])){	
-    $publisher = $_POST['publisher'];
+  if (isset($_POST['director'])){	
+    $director = $_POST['director'];
   }
 
   if (isset($_POST['rating'])){
     $rating = $_POST['rating'];
-  }
-
-  if (isset($_POST['platform'])){
-	 $platform = $_POST['platform'];
   }
 
   if (isset($_POST['genre'])){
@@ -64,11 +60,11 @@
 // echo "";
 
 
-   $editGameQuery= $db->prepare("UPDATE video_game SET title= ?, publisher= ?, rating= ?, platform=?, genre=? WHERE item_id= ?") or die("Your video_game update couldn't be done: " . $db->error); //Update the game's properties for the unique game
+   $editMovieQuery= $db->prepare("UPDATE movie SET title= ?, director= ?, rating= ?, genre=? WHERE item_id= ?") or die("Your movie update couldn't be done: " . $db->error); //Update the movie's properties for the unique game
 
-    $editGameQuery->bind_param("sssssd", $gameName, $publisher, $rating, $platform, $genre, $id); 
+    $editMovieQuery->bind_param("ssssd", $movieName, $director, $rating, $genre, $id); 
 
-    $editGameQuery->execute();
+    $editMovieQuery->execute();
 
     // printf("Can't enter into the item table: %s.\n", $db->error);
 
@@ -80,10 +76,10 @@
 
     $editItemQuery->execute();
 
-        // printf("Can't enter data into the video game table: %s.\n", $db->error);
+        // printf("Can't enter data into the video movie table: %s.\n", $db->error);
 
 
-    $editGameQuery->close();
+    $editMovieQuery->close();
     $editItemQuery->close();
     $db->close();
 

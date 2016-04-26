@@ -114,7 +114,7 @@ $.ajax({
 
 
 function finalCheckout() {
-  
+  window.location.replace("index.html");
 }
 
 

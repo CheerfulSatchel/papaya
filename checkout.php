@@ -18,8 +18,8 @@
 <script type="text/javascript">
 
 function updateTable() { //Ajax call to update the table to read by the user
-  alert("Inside update table");
-  alert(arguments[0]);
+  //alert("Inside update table");
+  //alert(arguments[0]);
   var email = arguments[0];
    $.ajax({ //makes the directory update with the newest row
        url: 'readBuy.php',
@@ -114,6 +114,7 @@ $.ajax({
 
 
 function finalCheckout() {
+
   window.location.replace("index.html");
 }
 
@@ -130,7 +131,7 @@ function finalCheckout() {
 <title>Checkout Page</title>
 </head>
 
-	<h1> Checkout Page </h1>
+	<h1> Checkout Page  </h1>
 	<br />
 
 <div id="editPopup"></div>

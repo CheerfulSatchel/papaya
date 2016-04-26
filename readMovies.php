@@ -1,5 +1,5 @@
 <?php 
- 	include 'databaseinfo.php';
+ 	include 'databaseInfo.php';
 
 
  	//get all the rows in the mysql database

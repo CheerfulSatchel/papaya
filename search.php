@@ -7,18 +7,19 @@
 		<link rel="stylesheet" href="css/skel.css" />
  		<link rel="stylesheet" href="css/style.css" />
  		<link rel="stylesheet" href="css/style-xlarge.css" />
+
 <?php
 
 	include 'databaseInfo.php';
 	 
 	if(isset($_GET['keywords'])){
 		$keywords = $db->escape_string($_GET['keywords']);
-		$query = $db->query("
+		$videogamequery = $db->query("
 			SELECT title
 			FROM video_game
 			WHERE title LIKE '%{$keywords}%' 	
 			");
-		$query2 = $db->query("
+		$songquery = $db->query("
 			SELECT name
 			FROM CD
 			WHERE name LIKE '%{$keywords}%' 
@@ -26,21 +27,37 @@
 			?>
 
 			<div class="result-count">
-			Found <?php echo $query->num_rows; ?> results, hooray!
-			Found <?php echo $query2->num_rows; ?> results, hooray!
+				Found <?php echo $videogamequery->num_rows; ?> result(s) in video games.
 			</div>
-
 <?php
 
-	if($query->num_rows){
-		while($r = $query->fetch_object()){
+	if($videogamequery->num_rows){
+		while($r = $videogamequery->fetch_object()){
 		?>
-			<div class="result">
+			<div class="videogameresult">
 			<a href="#"><?php echo $r->title; ?></a>
 			</div>	
 		<?php
 		}
 	}
+?>
+	<div class="result-count">
+				Found <?php echo $songquery->num_rows; ?> result(s) in songs.
+			</div>
+<?php
+	if($songquery->num_rows){
+		while($r = $songquery->fetch_object()){
+		?>
+			<div class="songresult">
+			<a href="#"><?php echo $r->name; ?></a>
+			</div>	
+		<?php
+		}
+	}
+
 } ?>
+
+
+
 
 </html>

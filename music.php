@@ -59,8 +59,8 @@ function buyMusic() {
         email += n;
       }
     }
-    // alert(id);
-    // alert(email);
+    alert(id);
+    alert(email);
 
        $.ajax({ //submits the values that were entered into the JavaScript form above by the user to be processed by processCreate.php
         type: "POST",
@@ -83,8 +83,8 @@ $( document ).ready(function() {
 
 //Ajax request to get the json data of the mysql results from read.php and display it on the table
 //eventually, VAR EMAIL = $_SESSION['email'];
-//var email = "tj@virginia.edu";
-var email = '<?php echo $_SESSION['email']; ?>';
+var email = "tj@virginia.edu";
+// var email = '<?php echo $_SESSION['email']; ?>';
 
 $.ajax({
     url: 'readMusic.php',

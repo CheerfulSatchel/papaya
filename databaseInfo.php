@@ -1,3 +1,5 @@
+<?php ini_set('display_errors', 1); ?>
+
 <?php 
         $server = "stardock.cs.virginia.edu";
         $username = "cs4750mjm5qu";

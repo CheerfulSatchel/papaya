@@ -1,3 +1,5 @@
+<?php ini_set('display_errors', 1); ?>
+
 <script type="text/javascript">
 
     /*function update() {

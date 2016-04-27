@@ -1,3 +1,5 @@
+<?php ini_set('display_errors', 1); ?>
+
 <!DOCTYPE html>
 <!--
  	Page to sell an item, redirects based on category

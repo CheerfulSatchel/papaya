@@ -1,5 +1,7 @@
+<?php ini_set('display_errors', 1); ?>
+
 <?php 
- 	include 'databaseinfo.php';
+ 	include 'databaseInfo.php';
 
 
  	//get all the rows in the mysql database

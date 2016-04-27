@@ -5,7 +5,7 @@
 
 
  	//get all the rows in the mysql database
- 	$stmt = $db->prepare("select item.item_id, video_game.title, video_game.publisher, video_game.rating, video_game.platform, video_game.genre, item.price, item.quantity FROM (video_game NATURAL JOIN item) ORDER BY video_game.title, video_game.platform, video_game.publisher, video_game.genre, video_game.rating");
+ 	$stmt = $db->prepare("select item.item_id, song.name, song.artist, song.length, song.release_year, item.price, item.quantity FROM (song NATURAL JOIN item) ORDER BY song.name, song.artist, song.length, song.release_year");
     $stmt->execute();
 
     $result = $stmt->get_result();

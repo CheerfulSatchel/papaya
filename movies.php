@@ -50,7 +50,7 @@ function buyMovie() {
         data: {id: id, email: email},
         success:function(data) {
             alert("HEy, we made it into update");
-            //setTimeout(updateTable(email), 3000); //Allows the database time to process the update
+            setTimeout(updateTable(email), 3000); //Allows the database time to process the update
         }
      });
 

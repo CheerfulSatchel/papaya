@@ -1673,7 +1673,7 @@ width: 10px;
     margin-bottom: 50px;
 }
 input[type="text"], input[type="password"], input[type="email"], textarea {
-    border: 1px solid #ddd;
+    border: 1px solid #228B22;
     padding: 10px;
 }
 

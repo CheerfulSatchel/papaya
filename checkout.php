@@ -309,7 +309,11 @@ function back() {
         </td>
     </tr>
 
-    
+  <tr>
+<th> Item </th>
+<th> Price </th>
+<th> Quantity </th>
+  
 
   <tbody>
   </tbody>

@@ -3,9 +3,9 @@
 	include 'databaseinfo.php'; //database information to access MySQL
 
 	if (isset($_POST['email'])){
-    	//$email = $_POST['email'];
+    	$email = $_POST['email'];
   	}
-  	$email = "tj@virginia.edu";
+  	// $email = "tj@virginia.edu";
 
 
   $stmt = $db->prepare("SELECT * FROM Buy WHERE email = ?");
@@ -37,13 +37,20 @@
 
   		$insertSell->execute() or die();
 
-		 echo $row['email']. " - ". $row['item_id'] . " - ". $row['Count'] ;
-		echo "<br />";
+		//  echo $row['email']. " - ". $row['item_id'] . " - ". $row['Count'] ;
+		// echo "<br />";
 }
 
-  	// for($i = 0; $i < $rows; $i++) {
 
-  	
+	$deletefrombuyQuery = $db->prepare("DELETE FROM Buy WHERE email = ?");
+
+    $deletefrombuyQuery->bind_param("s",$email); 
+
+    $deletefrombuyQuery->execute();    
+
+    $deletefrombuyQuery->close();
+    $db->close();
+
   }
 
   ?>

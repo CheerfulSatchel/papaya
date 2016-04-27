@@ -108,21 +108,20 @@ $.ajax({
     	},
 	error:function(exception){alert(exception)}
 });
-//hey
 });
 
 
 
 
 
-function finalCheckout() {
-  alert("HEY");
-  alert(arguments[0]);
+function finalCheckout(email) {
+  // alert("HEY");
+  // alert(arguments[0]);
    $.ajax({ //makes the directory update with the newest row
        url: 'updateSell.php',
        type: 'POST',
        dataType: 'json',
-       data: ({userName: arguments[0]}),
+       data: ({userName: email}),
        success: function (response) {
          alert("Success");
        },

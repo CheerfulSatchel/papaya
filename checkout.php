@@ -116,16 +116,15 @@ $.ajax({
 
 
 function finalCheckout() {
-  var email = $_SESSION['email'];
-
-  var email = arguments[0];
+  alert("HEY");
+  alert(arguments[0]);
    $.ajax({ //makes the directory update with the newest row
-       url: 'readBuy.php',
+       url: 'updateSell.php',
        type: 'POST',
        dataType: 'json',
-       data: ({userName: email}),
+       data: ({userName: arguments[0]}),
        success: function (response) {
-
+         alert("Success");
        },
        error:function(exception){alert(exception)}
     });
@@ -304,7 +303,7 @@ function back() {
             Total price:
            </div>
            <div id="buttonRight">
-             <button type="button" onClick='finalCheckout(<?php session_start(); echo $_SESSION['email'] ?>)'>Checkout</button>
+             <button type="button" onClick="finalCheckout('<?php echo $_SESSION['email'] ?>')">Checkout</button>
            </div>
         </td>
     </tr>
@@ -313,7 +312,7 @@ function back() {
 <th> Item </th>
 <th> Price </th>
 <th> Quantity </th>
-  
+
 
   <tbody>
   </tbody>
@@ -366,4 +365,3 @@ function back() {
 </body>
 
 </html>
-

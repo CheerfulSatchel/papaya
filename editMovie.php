@@ -109,7 +109,7 @@ if (isset($_GET["id"])) { //Check if the get variable is empty and if not, do th
 
 	$id = $_GET["id"]; //get the unique id of the record that each person has in the mysql table
 
-	$stmt = $db->prepare("select item.item_id, movie.title, movie.director, movie.genre, movie.rating, item.price, item.quantity FROM (movie NATURAL JOIN item)  WHERE item.item_id= ? ORDER BY movie.title, movie.director, movie.genre, movie.rating");
+	$stmt = $db->prepare("select item.item_id, movie.title, movie.director, actors.actor_names, movie.genre, movie.rating, item.price, item.quantity FROM (movie NATURAL JOIN item)  WHERE item.item_id= ? ORDER BY movie.title, movie.director, actors.actor_names, movie.genre, movie.rating");
     $stmt->bind_param("d", $id); 
     $stmt->execute();
 
@@ -120,6 +120,16 @@ if (isset($_GET["id"])) { //Check if the get variable is empty and if not, do th
     	$item_id = $data['item_id'];
 
     	$title = $data['title'];
+
+        $actors = $data['actor_names'];
+
+        $actor = explode(",", $actors);
+
+        $actor1 = trim($actor[0]);
+
+        $actor2 = trim($actor[1]);
+
+        $actor3 = trim($actor[2]);
 
 	   	$director = $data['director'];
 

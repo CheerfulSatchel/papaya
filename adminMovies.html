@@ -44,7 +44,7 @@ $.ajax({
     success: function (response) {
         var trHTML = "";
         $.each(response, function (i, val) {
-            trHTML += "<tr><td>" + val.title + "</td><td>" + val.director + "</td><td>" + val.genre + "</td><td>" + val.rating + "</td><td>" + val.price + "</td><td>" + val.quantity + "</td><td>" + "<div class='btn-group'> <button id='edit-" + val.item_id + "' type='button' class='btn-md' onClick='editClick(" + val.item_id + ")'>Edit This Entry</button> <button id='delete-" + val.item_id + "' type='button' class='btn-md' onClick='deleteClick(" + val.item_id + ")'>Delete</button></div> </td>" +  "</tr>";
+            trHTML += "<tr><td>" + val.title + "</td><td>" + val.director + "</td><td>" + val.actor_names + "</td><td>" + val.genre + "</td><td>" + val.rating + "</td><td>" + val.price + "</td><td>" + val.quantity + "</td><td>" + "<div class='btn-group'> <button id='edit-" + val.item_id + "' type='button' class='btn-md' onClick='editClick(" + val.item_id + ")'>Edit This Entry</button> <button id='delete-" + val.item_id + "' type='button' class='btn-md' onClick='deleteClick(" + val.item_id + ")'>Delete</button></div> </td>" +  "</tr>";
 
         });
         ($("#table tbody")).html(trHTML); //changes the contents of the table body to add the html rows filled in with the data from the JSON object
@@ -89,7 +89,7 @@ function deleteClick(id){ //function that handles when the "Delete" button is cl
                       success: function (response) {
                       var trHTML = "";
                       $.each(response, function (i, val) {
-                          trHTML += "<tr><td>" + val.title + "</td><td>" + val.director + "</td><td>" + val.genre + "</td><td>" + val.rating + "</td><td>" + val.price + "</td><td>" + val.quantity + "</td><td>" + "<div class='btn-group'> <button id='edit-" + val.item_id + "' type='button' class='btn-md' onClick='editClick(" + val.item_id + ")'>Edit This Entry</button> <button id='delete-" + val.item_id + "' type='button' class='btn-md' onClick='deleteClick(" + val.item_id + ")'>Delete</button></div> </td>" +  "</tr>";
+                          trHTML += "<tr><td>" + val.title + "</td><td>" + val.director + "</td><td>" + val.actor_names + "</td><td>" + val.genre + "</td><td>" + val.rating + "</td><td>" + val.price + "</td><td>" + val.quantity + "</td><td>" + "<div class='btn-group'> <button id='edit-" + val.item_id + "' type='button' class='btn-md' onClick='editClick(" + val.item_id + ")'>Edit This Entry</button> <button id='delete-" + val.item_id + "' type='button' class='btn-md' onClick='deleteClick(" + val.item_id + ")'>Delete</button></div> </td>" +  "</tr>";
 
                       });
             ($("#table tbody")).html(trHTML); //changes the contents of the table body to add the html rows filled in with the data from the JSON object
@@ -135,7 +135,7 @@ function createClick(){ //function that handles when the "Add Client" button is 
     <thead>
 
   <tr height="30px"> 
-    <td colspan="7">
+    <td colspan="8">
 
   <div id="buttonLeft">
 <input id="search" type="search"> <div class="btn-group"><button type="button">Search</button> <button type="button">Reset</button> </div> 
@@ -151,6 +151,7 @@ function createClick(){ //function that handles when the "Add Client" button is 
 <tr>
 <th> Name </th>
 <th> Director </th>
+<th> Lead Actors </th>
 <th> Genre </th>
 <th> Rating </th> 
 <th> Price </th>

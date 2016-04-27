@@ -5,8 +5,11 @@
 
 
  	//get all the rows in the mysql database
- 	$stmt = $db->prepare("select item.item_id, movie.title, movie.genre, movie.director, movie.rating, item.price, item.quantity FROM (movie NATURAL JOIN item) ORDER BY movie.title, movie.director, movie.genre, movie.rating");
+ 	$stmt = $db->prepare("select item.item_id, movie.title, movie.genre, movie.director, actors.actor_names, movie.rating, item.price, item.quantity FROM (movie NATURAL JOIN item NATURAL JOIN actors) ORDER BY movie.title, movie.director, actors.actor_names, movie.genre, movie.rating");
     $stmt->execute();
+
+        // printf("Error: %s.\n", $stmt->error);
+
 
     $result = $stmt->get_result();
  	$rows = $result->num_rows;

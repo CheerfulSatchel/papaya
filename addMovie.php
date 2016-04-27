@@ -66,15 +66,16 @@ $("#cancel").click(function(){
             }
 
 
-    window.parent.$("#addMovieWindow").data("kendoWindow").close(); //Closes the Kendo Window after Ok in the alert box is clicked
+    // window.parent.$("#addMovieWindow").data("kendoWindow").close(); //Closes the Kendo Window after Ok in the alert box is clicked
 
         $.ajax({ //submits the values that were entered into the JavaScript form above by the user to be processed by processAddGame.php
           type: "POST",
           url:"processAddMovie.php",
-          data: {movieName: $("#movieName").val(), director: $("#director").val(), rating: $("#rating").val(), platform: $("#platform").val(), genre: $("#genre").val(), price: $("#price").val(), quantity: $("#quantity").val()},
+          data: {movieName: $("#movieName").val(), director: $("#director").val(), actor1: $("#actor1").val(), actor2: $("#actor2").val(), actor3: $("#actor3").val(),  rating: $("#rating").val(), platform: $("#platform").val(), genre: $("#genre").val(), price: $("#price").val(), quantity: $("#quantity").val()},
           dataType: 'html',
           success:function(data) {
                 alert('You have added ' + movieName + ' to the database!');
+                ($("#test")).html(data); //changes the contents of the table body to add the html rows filled in with the data from the JSON object
 
           }
        });
@@ -92,8 +93,7 @@ $("#cancel").click(function(){
             success: function (response) {
             var trHTML = "";
             $.each(response, function (i, val) {
-            trHTML += "<tr><td>" + val.title + "</td><td>" + val.director + "</td><td>" + val.genre + "</td><td>" + val.rating + "</td><td>" + val.price + "</td><td>" + val.quantity + "</td><td>" + "<div class='btn-group'> <button id='edit-" + val.item_id + "' type='button' class='btn-md' onClick='editClick(" + val.item_id + ")'>Edit This Entry</button> <button id='delete-" + val.item_id + "' type='button' class='btn-md' onClick='deleteClick(" + val.item_id + ")'>Delete</button></div> </td>" +  "</tr>";
-
+            trHTML += "<tr><td>" + val.title + "</td><td>" + val.director + "</td><td>" + val.actor_names + "</td><td>" + val.genre + "</td><td>" + val.rating + "</td><td>" + val.price + "</td><td>" + val.quantity + "</td><td>" + "<div class='btn-group'> <button id='edit-" + val.item_id + "' type='button' class='btn-md' onClick='editClick(" + val.item_id + ")'>Edit This Entry</button> <button id='delete-" + val.item_id + "' type='button' class='btn-md' onClick='deleteClick(" + val.item_id + ")'>Delete</button></div> </td>" +  "</tr>";
             });
             ($("#table tbody")).html(trHTML); //changes the contents of the table body to add the html rows filled in with the data from the JSON object
         },
@@ -155,6 +155,12 @@ $("#cancel").click(function(){
 
         <label>Director  </label> <input type="text" id="director"> </br> </br>
 
+        <label>Actor Name  </label> <input type="text" id="actor1"> </br> </br>
+
+        <label>Actor Name </label> <input type="text" id="actor2"> </br> </br>
+
+        <label>Actor Name  </label> <input type="text" id="actor3"> </br> </br>
+
         <label>Rating  </label> <select id="rating">
 
         <option value="G">G</option>
@@ -195,6 +201,8 @@ $("#cancel").click(function(){
         <label>Quantity  </label> <input type="text" id="quantity"> </br> </br>
 
     </br> </br>
+
+    <div id="test"> </div>
         
     </form>
 

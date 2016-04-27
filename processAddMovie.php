@@ -14,6 +14,32 @@
     $director = $_POST['director'];
   }
 
+  if (isset($_POST['actor1']) && $_POST['actor1'] != ""){ 
+    $actor1 = $_POST['actor1'];
+  }
+
+  if (isset($_POST['actor2']) && $_POST['actor2'] != ""){ 
+    $actor2 = $_POST['actor2'];
+  }
+
+  if (isset($_POST['actor3']) && $_POST['actor3'] != ""){ 
+    $actor3 = $_POST['actor3'];
+  }
+
+  $actors = "";
+
+  if (isset($actor1)) {
+    $actors . ", " . $actor1;
+  }
+
+    if (isset($actor2)) {
+    $actors . ", " . $actor2;
+  }
+
+    if (isset($actor3)) {
+    $actors . ", " . $actor3;
+  } //$actors now has all of the actors in one string separated by commas
+
   if (isset($_POST['genre'])){
     $genre = $_POST['genre'];
   }
@@ -53,9 +79,20 @@
 
         // printf("Can't enter data into the video game table: %s.\n", $db->error);
 
+    $movieActorsQuery = $db->prepare("INSERT INTO actors(item_id, actor_names) values(?, ?)");
+
+    $movieActorsQuery->bind_param("ds", $itemId, $actors); 
+
+    $movieActorsQuery->execute();
+
+            // printf("Can't enter data into the movie table: %s.\n", $db->error);
+
+
+
 
     $movieQuery->close();
     $itemQuery->close();
+    $movieActorsQuery->close();
     $db->close();
 
  

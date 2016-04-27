@@ -10,6 +10,10 @@
     session_start();
 
       if(isset($_POST['email']) && isset($_POST['password'])) {
+        $firstName = $_POST['firstName'];
+        $lastName = $_POST['lastName'];
+
+
         $email = $_POST['email'];
         $password = $_POST['password'];
         $hashed_password = md5($password); //Hashes the password using the default crypt hash algorithm
@@ -35,9 +39,9 @@
         // $db->query("insert into user values(\"$email\", \"$hashed_password\", \"$street\",
         // \"$city\", \"$state\", \"$zipcode\")");
 
-        $stmt = $db->prepare("insert into user values(?, ?, ?, ?, ?, ?)"); //Make a prepared statement to avoid sql injection attacks
+        $stmt = $db->prepare("insert into user(email, password, street, city, state, zipcode, firstName, lastName) values(?, ?, ?, ?, ?, ?, ?, ?)"); //Make a prepared statement to avoid sql injection attacks
 
-        $stmt->bind_param("ssssss",$email, $hashed_password, $street, $city, $state, $zipcode); //Need to have 7 parameters, the types (aka "s" for string or "d" for digit), and the variables you want to enter
+        $stmt->bind_param("ssssssss",$email, $hashed_password, $street, $city, $state, $zipcode, $firstName, $lastName ); //Need to have 7 parameters, the types (aka "s" for string or "d" for digit), and the variables you want to enter
 
         $stmt->execute();
 

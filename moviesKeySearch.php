@@ -25,7 +25,7 @@
     alert(keyword);
     //Ajax request to get the json data of the mysql results from read.php and display it on the table
     $.ajax({
-      url: 'readMoviesKeyword.php',
+      url: 'readMoviesKey.php',
       dataType: 'json',
       data: {keyword:keyword},
       success: function (response) {

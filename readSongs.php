@@ -22,26 +22,6 @@
         
 
     }
-
-
-
-    
-
-
-
-
     echo json_encode($jsonArray);
-
-
-
-
- 	
-
-	
-
-
-
-	
-
 ?>
 

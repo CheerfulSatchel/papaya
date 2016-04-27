@@ -41,6 +41,9 @@ if (isset($_SESSION['login'])) {
 
 	<div class = "center">
 
+ 	<head>
+ 		<p1>Greetings! Please login in with your username and password.</p1>
+ 	</head>
  	<br />
  	<form align="left" action="processlogin.php" method="POST">
 		<input type = "email" name = "email" placeholder='Email'>
@@ -48,11 +51,10 @@ if (isset($_SESSION['login'])) {
 		<input type = "password" name = "password" placeholder='Password'>
 		
 		<input type = "submit" name = 'submit' value = "Login"> </form>
-
-<input type="button" onclick="location.href='forgotPassword.php';" value = "Forgot Password">
-
 <input type="button" onclick="location.href='createAccount.php';" value = "Create an Account">
-
+		<br />
+		<br />
+<input type="button" onclick="location.href='index.html';" value = "Home">
 <br />
 
 <br />

@@ -64,15 +64,15 @@ function deleteClick(a, b){ //function that handles when the "Delete" button is 
           email += n;
         }
       }
-      alert(id);
-      alert(email);
+      //alert(id);
+      //alert(email);
 
          $.ajax({ //submits the values that were entered into the JavaScript form above by the user to be processed by processCreate.php
           type: "POST",
           url:"deleteBuy.php",
           data: {id: id, email: email},
           success:function(data) {
-              alert("HEy, we made it into update");
+              //alert("HEy, we made it into update");
               setTimeout(updateTable(email), 3000); //Allows the database time to process the update
           }
        });

@@ -20,7 +20,7 @@
 
   function buySong() {
     var a = arguments[0];
-    alert(a);
+    //alert(a);
 
     var deleteConfirm = confirm("Are you sure you want to buy this item?");
     if (deleteConfirm == true) {
@@ -40,7 +40,7 @@
           email += n;
         }
       }
-      alert(id);
+      //alert(id);
       alert(email);
 
          $.ajax({ //submits the values that were entered into the JavaScript form above by the user to be processed by processCreate.php
@@ -48,7 +48,7 @@
           url:"addMusicBuy.php",
           data: {id: id, email: email},
           success:function(data) {
-              alert("HEy, we made it into update");
+              //alert("HEy, we made it into update");
               setTimeout(updateTable(email), 3000); //Allows the database time to process the update
           }
        });
@@ -61,8 +61,8 @@
     //var email = "tj@virginia.edu"; //TO BE CHANGED TO SESSION VARIABLE
     var email = '<?php echo $_SESSION['email']?>';
     var keyword = '<?php echo $_SESSION['keyword']?>';
-    alert(email);
-    alert(keyword);
+    //alert(email);
+    //alert(keyword);
     //Ajax request to get the json data of the mysql results from read.php and display it on the table
     $.ajax({
       type: "POST",

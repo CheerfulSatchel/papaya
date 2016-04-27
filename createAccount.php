@@ -13,11 +13,12 @@
 
     <h3> Enter the following information to register a new account! </h3>
     <form method="POST" action="processNewAccount.php">
-      <label>Email:  </label><input type = "text" name = "email" value="" style= "width:300px;"> <br/>
-      <label>Password:  </label> <input type = "text" name = "password" value="" style= "width:300px;">  <br/>
-      <label>Street:  </label> <input type = "text" name = "street" value = "" style= "width:300px;">  <br/>
-      <label>City:  </label> <input type = "text" name = "city" value = "" style= "width:300px;"> <br/> 
-       <label>State:  </label><select name = "state" style= "width:300px;">
+    <label>First Name: </label><input type = "text" name = "firstName" value="" style= "width:400px;">
+      <label>Email (this will be your username):  </label><input type = "text" name = "email" value="" style= "width:400px;"> <br/>
+      <label>Password:  </label> <input type = "text" name = "password" value="" style= "width:400px;">  <br/>
+      <label>Street:  </label> <input type = "text" name = "street" value = "" style= "width:400px;">  <br/>
+      <label>City:  </label> <input type = "text" name = "city" value = "" style= "width:400px;"> <br/> 
+       <label>State:  </label><select name = "state" style= "width:400px;">
         <option value="AL">Alabama</option>
         <option value="AK">Alaska</option>
         <option value="AZ">Arizona</option>
@@ -71,7 +72,7 @@
         <option value="WY">Wyoming</option>
       </select>
       <br/> <br/>
-  <label>Zipcode:  </label> <input type = "text" name = "zipcode" value = "" style= "width:300px;"> <br/> <br/>
+  <label>Zipcode:  </label> <input type = "text" name = "zipcode" value = "" style= "width:400px;"> <br/> <br/>
       <input type="submit" name="Submit" value="Submit">
     </form>
   </body>

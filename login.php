@@ -48,8 +48,6 @@ if (isset($_SESSION['login'])) {
 		<input type = "password" name = "password" placeholder='Password'>
 		
 		<input type = "submit" name = 'submit' value = "Login"> </form>
-	
-	<br /> </br>
 
 <input type="button" onclick="location.href='forgotPassword.php';" value = "Forgot Password">
 

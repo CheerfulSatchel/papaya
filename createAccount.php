@@ -14,6 +14,8 @@
     <h3> Enter the following information to register a new account! </h3>
     <form method="POST" action="processNewAccount.php">
     <label>First Name: </label><input type = "text" name = "firstName" value="" style= "width:400px;">
+    <label>Last Name: </label><input type = "text" name = "lastName" value="" style= "width:400px;">
+
       <label>Email (this will be your username):  </label><input type = "text" name = "email" value="" style= "width:400px;"> <br/>
       <label>Password:  </label> <input type = "text" name = "password" value="" style= "width:400px;">  <br/>
       <label>Street:  </label> <input type = "text" name = "street" value = "" style= "width:400px;">  <br/>

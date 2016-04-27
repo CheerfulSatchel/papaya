@@ -28,7 +28,7 @@
       $stmt = $db->prepare("select * from user where user.email= ? and user.password = ?");
 
       $stmt->bind_param("ss", $user, $hashed_password);
-      
+
       $stmt->execute();
 
 
@@ -48,18 +48,20 @@
   	 			}
 
   	 		header("Location: login.php"); //redirect to the login page
-  	 	}
+  	 	} else {
 
-      if (($_POST['email'].trim()) == "admin@gmail.com") {
-        header("Location: admin.html");
-      }
+        $_SESSION['email'] = $user;
 
-	 	else{
+        if (($_POST['email'].trim()) == "admin@gmail.com") {
+          header("Location: admin.html");
+        }
 
-	 		header("Location: index.html"); //redirect to the successful login page
+	 	   else{
 
-	 	}
+	 		  header("Location: index.html"); //redirect to the successful login page
 
+	 	 }
+    }
 
 
 

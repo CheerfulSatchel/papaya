@@ -19,7 +19,8 @@
   <script type="text/javascript">
 
   $( document ).ready(function() {
-    var email = "tj@virginia.edu";
+    //var email = "tj@virginia.edu";
+    var email = '<?php echo $_SESSION['email']?>';
     var keyword = '<?php echo $_SESSION['keyword']?>';
     alert(email);
     alert(keyword);

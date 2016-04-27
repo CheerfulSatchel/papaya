@@ -6,26 +6,18 @@
     <title> Create Account </title>
   </head>
   <body>
-
-<style type="text/css">
-    label{
-        display: inline-block;
-        float: left;
-        clear: left;
-        width: 80px;
-        text-align: right;
-        font-weight:bold;
-    }
-
+ <link rel="stylesheet" href="css/skel.css" />
+ <link rel="stylesheet" href="css/style.css" />
+ <link rel="stylesheet" href="css/style-xlarge.css" />
     </style>
 
     <h3> Enter the following information to register a new account! </h3>
     <form method="POST" action="processNewAccount.php">
-      <label>Email:  </label> <input type = "text" name = "email" value=""> <br/> <br/>
-      <label>Password:  </label> <input type = "text" name = "password" value=""> <br/> <br/>
-      <label>Street:  </label> <input type = "text" name = "street" value = ""> <br/> <br/>
-      <label>City:  </label> <input type = "text" name = "city" value = ""> <br/> <br/>
-       <label>State:  </label><select name = "state">
+      <label>Email:  </label><input type = "text" name = "email" value="" style= "width:300px;"> <br/>
+      <label>Password:  </label> <input type = "text" name = "password" value="" style= "width:300px;">  <br/>
+      <label>Street:  </label> <input type = "text" name = "street" value = "" style= "width:300px;">  <br/>
+      <label>City:  </label> <input type = "text" name = "city" value = "" style= "width:300px;"> <br/> 
+       <label>State:  </label><select name = "state" style= "width:300px;">
         <option value="AL">Alabama</option>
         <option value="AK">Alaska</option>
         <option value="AZ">Arizona</option>
@@ -79,7 +71,7 @@
         <option value="WY">Wyoming</option>
       </select>
       <br/> <br/>
-  <label>Zipcode:  </label> <input type = "text" name = "zipcode" value = ""> <br/> <br/>
+  <label>Zipcode:  </label> <input type = "text" name = "zipcode" value = "" style= "width:300px;"> <br/> <br/>
       <input type="submit" name="Submit" value="Submit">
     </form>
   </body>

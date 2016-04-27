@@ -64,9 +64,10 @@
     alert(keyword);
     //Ajax request to get the json data of the mysql results from read.php and display it on the table
     $.ajax({
+      type: "POST",
       url: 'readSongsKeyword.php',
       dataType: 'json',
-      data: {keyword:keyword},
+      data: {key:keyword},
       success: function (response) {
         var trHTML = "";
         $.each(response, function (i, val) {

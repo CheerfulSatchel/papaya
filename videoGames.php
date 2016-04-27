@@ -61,7 +61,8 @@ function buyGame() {
 $( document ).ready(function() {
 
 //needs to be changed to session variable
-var email = "tj@virginia.edu";
+//var email = "tj@virginia.edu";
+var email = '<?php echo $_SESSION['email']; ?>';
 
 //Ajax request to get the json data of the mysql results from read.php and display it on the table
 $.ajax({

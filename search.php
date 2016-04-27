@@ -14,8 +14,8 @@
 
 	if($category == "Movies") {
 		header("Location: moviesKeySearch.php");
-	} else if ($category == "Video games") {
-		header("Location: videoGamesKeySearch.php");
+	} else if ($category == "Video Games") {
+		header("Location: gamesKeySearch.php");
 	} else if ($category == "Music") {
 		header("Location: songsKeySearch.php");
 	}

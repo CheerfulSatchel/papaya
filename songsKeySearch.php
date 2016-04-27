@@ -18,6 +18,45 @@
 
   <script type="text/javascript">
 
+  function buySong() {
+    var a = arguments[0];
+    alert(a);
+
+    var deleteConfirm = confirm("Are you sure you want to buy this item?");
+    if (deleteConfirm == true) {
+      var id = "";
+      var email = "";
+      var found = 0;
+      for(var i = 0; i < a.length; i++) {
+        if(found == 0) {
+          var n = a.charAt(i);
+          if(n != ",") {
+            id += n;
+          } else {
+            found = 1;
+          }
+        } else {
+          var n = a.charAt(i);
+          email += n;
+        }
+      }
+      alert(id);
+      alert(email);
+
+         $.ajax({ //submits the values that were entered into the JavaScript form above by the user to be processed by processCreate.php
+          type: "POST",
+          url:"addMusicBuy.php",
+          data: {id: id, email: email},
+          success:function(data) {
+              alert("HEy, we made it into update");
+              setTimeout(updateTable(email), 3000); //Allows the database time to process the update
+          }
+       });
+
+    }
+  }
+
+
   $( document ).ready(function() {
     var email = "tj@virginia.edu"; //TO BE CHANGED TO SESSION VARIABLE
     var keyword = '<?php echo $_SESSION['keyword']?>';
@@ -25,14 +64,14 @@
     alert(keyword);
     //Ajax request to get the json data of the mysql results from read.php and display it on the table
     $.ajax({
-      url: 'readMoviesKeyword.php',
+      url: 'readSongsKeyword.php',
       dataType: 'json',
       data: {keyword:keyword},
       success: function (response) {
         var trHTML = "";
         $.each(response, function (i, val) {
-            trHTML += "<tr><td>" + val.title + "</td><td>" + val.director + "</td><td>" + val.genre + "</td><td>" + val.price + "</td><td>" + val.quantity +
-						 "</td><td><button type='button' class='btn-md' onClick=\"(buyMovie('" + val.item_id + "," + email + "'))\">Add To Cart</button></td>";
+            trHTML += "<tr><td>" + val.name + "</td><td>" + val.artist + "</td><td>" + val.length + "</td><td>" + val.release_year + "</td><td>" + val.price +
+						 "</td><td><button type='button' class='btn-md' onClick=\"(buySong('" + val.item_id + "," + email + "'))\">Add To Cart</button></td>";
         });
         ($("#table tbody")).html(trHTML); //changes the contents of the table body to add the html rows filled in with the data from the JSON object
       },

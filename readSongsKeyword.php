@@ -1,8 +1,8 @@
  <?php
     ini_set('display_errors', 1);
   	include 'databaseInfo.php';
-    $keywords = $_POST['keyword'];
-    
+    $keywords = $_POST['key'];
+    //$keywords = "inal";
     //$keywords = "bright";
     $preparedString = "%" . $keywords . "%";
 

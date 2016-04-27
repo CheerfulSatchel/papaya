@@ -1,9 +1,9 @@
 <?php
   include 'databaseInfo.php'; //database information to access MySQL
-  $id = $_POST['id'];
-  $email = $_POST['email'];
-  //$id=48;
-  //$email = "tj@virginia.edu";
+  //$id = $_POST['id'];
+  //$email = $_POST['email'];
+  $id=113;
+  $email = "mjm5qu@virginia.edu";
   $timestamp = "April 2016";
 
   //echo "HEYYYYYYYY";

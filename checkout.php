@@ -33,10 +33,10 @@ function updateTable() { //Ajax call to update the table to read by the user
        $.each(response, function (i, val) {
          //CDs have names, movies and videogames have titles
          if(typeof val.title !== 'undefined') {
-            trHTML += "<tr><td>" + val.title + "</td><td>" + val.price + "</td><td>" + "<div class='btn-group'><button id='delete-" + val.item_id
+            trHTML += "<tr><td>" + val.title + "</td><td>" + val.price + "</td><td>" + val.Count + "</td><td>" + "<div class='btn-group'><button id='delete-" + val.item_id
              + "' type='button' class='btn-md' onClick=\"(deleteClick('" + val.item_id + "," + email + "'))\">Delete</button></div> </td>" +  "</tr>";
          } else if(typeof val.name !== 'undefined') {
-           trHTML += "<tr><td>" + val.name + "</td><td>" + val.price + "</td><td>" + "<div class='btn-group'> <button id='delete-" + val.item_id
+           trHTML += "<tr><td>" + val.name + "</td><td>" + val.price + "</td><td>" + val.Count + "</td><td>" + "<div class='btn-group'> <button id='delete-" + val.item_id
             + "' type='button' class='btn-md' onClick=\"(deleteClick('" + val.item_id  + "," + email + "'))\">Delete</button></div> </td>" +  "</tr>";
          }
        });
@@ -86,7 +86,7 @@ $( document ).ready(function() {
 
 
 //Ajax request to get the json data of the mysql results from read.php and display it on the table
-var email = '<?php echo $_SESSION['email'];?>';
+var email = '<?php session_start(); echo $_SESSION['email'];?>';
 $.ajax({
     url: 'readBuy.php',
     type: 'POST',
@@ -97,10 +97,10 @@ $.ajax({
         $.each(response, function (i, val) {
           //CDs have names, movies and videogames have titles
           if(typeof val.title !== 'undefined') {
-             trHTML += "<tr><td>" + val.title + "</td><td>" + val.price + "</td><td>" + "<div class='btn-group'><button id='delete-" + val.item_id
+             trHTML += "<tr><td>" + val.title + "</td><td>" + val.price + "</td><td>"  + val.Count + "</td><td>" + "<div class='btn-group'><button id='delete-" + val.item_id
               + "' type='button' class='btn-md' onClick=\"(deleteClick('" + val.item_id + "," + email + "'))\">Delete</button></div> </td>" +  "</tr>";
           } else if(typeof val.name !== 'undefined') {
-            trHTML += "<tr><td>" + val.name + "</td><td>" + val.price + "</td><td>" + "<div class='btn-group'> <button id='delete-" + val.item_id
+            trHTML += "<tr><td>" + val.name + "</td><td>" + val.price + "</td><td>" + val.Count + "</td><td>" + "<div class='btn-group'> <button id='delete-" + val.item_id
              + "' type='button' class='btn-md' onClick=\"(deleteClick('" + val.item_id  + "," + email + "'))\">Delete</button></div> </td>" +  "</tr>";
           }
         });
@@ -181,6 +181,7 @@ function back() {
     <tr>
       <th> Name </th>
       <th> Price </th>
+      <th> Quantity </th>
       <th> </th>
     </tr>
   </thead>
@@ -189,10 +190,6 @@ function back() {
   </tbody>
 
 </table>
-
-<?php
-  echo "$_SESSION['email']";
- ?>
 
 </body>
 

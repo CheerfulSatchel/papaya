@@ -1,5 +1,3 @@
-<?php session_start(); ?>
-
 <DOCTYPE html>
 <html>
 <head>
@@ -19,7 +17,27 @@
 
 <script type="text/javascript">
 
-function buyMovie() {
+function updateTable() { //Ajax call to update the table to read by the user
+  //alert("Inside update table");
+  //alert(arguments[0]);
+  var email = arguments[0];
+  $.ajax({
+      url: 'readMusic.php',
+      dataType: 'json',
+      success: function (response) {
+          var trHTML = "";
+          $.each(response, function (i, val) {
+              trHTML += "<tr><td>" + val.name + "</td><td>" + val.artist + "</td><td>" + val.length + "</td><td>" + val.release_year + "</td><td>" +
+              val.price + "</td><td> <button type='button' class='btn-md' onClick=\"(buyMusic('" + val.item_id + "," + email + "'))\">Add To Cart</button></td>";
+
+          });
+          ($("#table tbody")).html(trHTML); //changes the contents of the table body to add the html rows filled in with the data from the JSON object
+       },
+   error:function(exception){alert(exception)}
+  });
+}
+
+function buyMusic() {
   var a = arguments[0];
   alert(a);
 
@@ -46,11 +64,11 @@ function buyMovie() {
 
        $.ajax({ //submits the values that were entered into the JavaScript form above by the user to be processed by processCreate.php
         type: "POST",
-        url:"addMovieBuy.php",
+        url:"addMusicBuy.php",
         data: {id: id, email: email},
         success:function(data) {
             alert("HEy, we made it into update");
-            //setTimeout(updateTable(email), 3000); //Allows the database time to process the update
+            setTimeout(updateTable(email), 3000); //Allows the database time to process the update
         }
      });
 
@@ -58,20 +76,23 @@ function buyMovie() {
 }
 
 
+
 $( document ).ready(function() {
 
 
-//var email = "tj@virginia.edu";
-var email = '<?php echo $_SESSION['email']; ?>';
+
 //Ajax request to get the json data of the mysql results from read.php and display it on the table
+//eventually, VAR EMAIL = $_SESSION['email'];
+var email = "tj@virginia.edu";
+
 $.ajax({
-    url: 'readMovies.php',
+    url: 'readMusic.php',
     dataType: 'json',
     success: function (response) {
         var trHTML = "";
         $.each(response, function (i, val) {
-            trHTML += "<tr><td>" + val.title + "</td><td>" + val.director + "</td><td>" + val.actor_names + "</td><td>"+ val.genre + "</td><td>" + val.rating + "</td><td>" + val.price +
-						 "</td><td><button type='button' class='btn-md' onClick=\"(buyMovie('" + val.item_id + "," + email + "'))\">Add To Cart</button></td>";
+            trHTML += "<tr><td>" + val.name + "</td><td>" + val.artist + "</td><td>" + val.length + "</td><td>" + val.release_year + "</td><td>" +
+            val.price + "</td><td> <button type='button' class='btn-md' onClick=\"(buyMusic('" + val.item_id + "," + email + "'))\">Add To Cart</button></td>";
 
         });
         ($("#table tbody")).html(trHTML); //changes the contents of the table body to add the html rows filled in with the data from the JSON object
@@ -84,13 +105,15 @@ $.ajax({
 
 </script>
 
+
+
  <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Movies</title>
+    <title>Music</title>
 
     <!-- Google Fonts -->
     <link href='http://fonts.googleapis.com/css?family=Titillium+Web:400,200,300,700,600' rel='stylesheet' type='text/css'>
@@ -215,7 +238,7 @@ $.ajax({
 
 </head>
 <br/>
-  <h1> Movies</h1>
+  <h1> Music</h1>
   <br />
 <div id="editPopup"></div>
 
@@ -238,13 +261,12 @@ $.ajax({
   </tr>
 
 <tr>
-<th> Name </th>
-<th> Director </th>
-<th> Actors </th>
-<th> Genre </th>
-<th> Rating </th>
-<th> Price </th>
-<th> </th>
+ <th> Name </th>
+  <th> Artist </th>
+  <th> Length </th>
+  <th> Released </th>
+  <th> Price </th>
+  <th>  </th>
 
 
   </tr>

@@ -59,8 +59,8 @@ function buyMusic() {
         email += n;
       }
     }
-    alert(id);
-    alert(email);
+    // alert(id);
+    // alert(email);
 
        $.ajax({ //submits the values that were entered into the JavaScript form above by the user to be processed by processCreate.php
         type: "POST",
@@ -252,9 +252,7 @@ $.ajax({
   <tr height="30px">
     <td colspan="6">
 
-  <div id="buttonLeft">
-<input id="search" type="search"> <div class="btn-group"><button type="button">Search</button> </div>
-  </div>
+
 
 
     </td>

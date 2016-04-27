@@ -229,9 +229,7 @@ $.ajax({
   <tr height="30px">
     <td colspan="6">
 
-  <div id="buttonLeft">
-<input id="search" type="search"> <div class="btn-group"><button type="button">Search</button> </div>
-  </div>
+
 
 
     </td>

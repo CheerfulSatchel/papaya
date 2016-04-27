@@ -15,15 +15,35 @@
 
   if($result->num_rows > 0) {
   	$rows = $result->num_rows;
-  	for($i = 0; $i < $rows; $i++) {
-  		$row = $result -> fetch_array();
-  		print_r($row);
-  		foreach($row as $key=>$val) {
-  			if($key == "item_id") {
-  				echo "$val";	
-  			} else if($key == "Count") {
-  				echo "$val";
-  			}
-  		}
-  	}
+
+
+
+
+  $insertSell = $db->prepare("INSERT INTO sell(item_id, email, count, timestamp) values(?, ?, ?, ?)");
+
+   $insertSell->bind_param("dsds", $item_id, $email, $count, $timestamp);
+
+
+  	while($row = $result->fetch_array()){
+
+  		$item_id = $row['item_id']; 
+
+  		$email = $row['email'];
+
+  		$count = $row['Count'];
+
+  		$timestamp = $row['timestamp'];
+
+
+  		$insertSell->execute() or die();
+
+		 echo $row['email']. " - ". $row['item_id'] . " - ". $row['Count'] ;
+		echo "<br />";
+}
+
+  	// for($i = 0; $i < $rows; $i++) {
+
+  	
   }
+
+  ?>

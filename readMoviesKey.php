@@ -2,17 +2,22 @@
   ini_set('display_errors', 1);
  	include 'databaseInfo.php';
   $keyword = $_POST['keyword'];
+    // $keyword = "ing";
+  $preparedString = "%" . $keyword . "%";
 
 
  	//get all the rows in the mysql database
  	$stmt = $db->prepare(
-    "SELECT item.item_id, movie.title, movie.rating, actors.actor_names,movie.genre, movie.director, movie.rating, item.price, 
+    "SELECT item.item_id, movie.title, movie.rating, actors.actor_names,movie.genre, movie.director, movie.rating, item.price 
     FROM (movie NATURAL JOIN item NATURAL JOIN actors)
-    ORDER BY movie.title, movie.director, actors.actor_names, movie.genre, movie.rating 
-    WHERE movie.title LIKE '%{$keyword}%'
-    OR movie.director LIKE '%{$keyword}%'
-    OR actors.actor_names LIKE '%{$keyword}%' 
-    OR movie.genre LIKE '%{$keyword}%'");
+    WHERE movie.title LIKE ?
+    OR movie.director LIKE ?
+    OR actors.actor_names LIKE ? 
+    OR movie.genre LIKE ?
+        ORDER BY movie.title, movie.director, actors.actor_names, movie.genre, movie.rating ");
+
+    $stmt->bind_param("ssss", $preparedString, $preparedString, $preparedString, $preparedString);
+
     $stmt->execute();
 
     $result = $stmt->get_result();

@@ -57,7 +57,7 @@
   <table class="table table-striped table-bordered table-condensed table-responsive" id="table" width="75%">
 	  <thead>
       <tr height="30px">
-		    <td colspan="6">
+		    <td colspan="7">
 	         <div id="buttonLeft">
              <input id="search" type="search"> <div class="btn-group"><button type="button">Search</button> </div>
 	         </div>

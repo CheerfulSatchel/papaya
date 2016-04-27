@@ -42,7 +42,7 @@
 				color:#00FF7F;
 				background:transparent;
 			}
-			
+
 		</style>
 		<!--[if lte IE 8]><link rel="stylesheet" href="css/ie/v8.css" /><![endif]-->
 	</head>
@@ -68,11 +68,11 @@
 
 				<ul class="actions">
 					<li>
-						<form action="search.php" method="get">
-						
+						<form action="search.php" method="POST">
+
 							<input id="search-bar" type="text" name = "keywords" placeholder="Search here, frands!" autocomplete="on">
-						
-							<select id="category">
+
+							<select id="category" name = "category">
 								<option value="Category">Category</option>
 								<option value="Music">Music</option>
 								<option value="Movies">Movies</option>

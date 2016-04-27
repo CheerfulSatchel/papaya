@@ -21,7 +21,7 @@
     //echo "$category";
     //Database parameters
     $server = "stardock.cs.virginia.edu";
-    $username = "cs4750mjm5qu";
+    $username = "cs4750mjm5qua";
     $dbpassword = "snowball";
     $db_name = "cs4750mjm5qu";
     $db = new mysqli("$server", "$username", "$dbpassword", "$db_name");

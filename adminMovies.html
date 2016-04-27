@@ -37,6 +37,8 @@ $( document ).ready(function() {
 
 
 
+
+
 //Ajax request to get the json data of the mysql results from read.php and display it on the table
 $.ajax({
     url: 'readMovies.php',
@@ -115,6 +117,7 @@ function createClick(){ //function that handles when the "Add Client" button is 
 }
 
 
+
   </script>
 
 
@@ -143,6 +146,8 @@ function createClick(){ //function that handles when the "Add Client" button is 
 
   <div id="buttonRight">
     <button type="button" id='addMovie' onClick='createClick()'>Add Movie</button>
+    <button type="button" onclick="location.href = 'readMovies.php';" id='export' >Export to JSON</button>
+
   </div>
     </td>
 

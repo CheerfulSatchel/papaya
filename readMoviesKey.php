@@ -3,15 +3,16 @@
  	include 'databaseInfo.php';
   $keyword = $_POST['keyword'];
 
-  $editMovieQuery= $db->prepare("UPDATE movie SET title= ?, director= ?, rating= ?, genre=? WHERE item_id= ?") or die("Your movie update couldn't be done: " . $db->error); //Update the movie's properties for the unique game
-
-   $editMovieQuery->bind_param("ssssd", $movieName, $director, $rating, $genre, $id);
-
-   $editMovieQuery->execute();
 
  	//get all the rows in the mysql database
- 	$stmt = $db->prepare("select item.item_id, movie.title, movie.genre, movie.director, movie.rating, item.price, item.quantity FROM (movie NATURAL JOIN item)
-  ORDER BY movie.title, movie.director, movie.genre, movie.rating WHERE movie.title LIKE '%{$keyword}%'");");
+ 	$stmt = $db->prepare(
+    "SELECT item.item_id, movie.title, movie.rating, actors.actor_names,movie.genre, movie.director, movie.rating, item.price, 
+    FROM (movie NATURAL JOIN item NATURAL JOIN actors)
+    ORDER BY movie.title, movie.director, actors.actor_names, movie.genre, movie.rating 
+    WHERE movie.title LIKE '%{$keyword}%'
+    OR movie.director LIKE '%{$keyword}%'
+    OR actors.actor_names LIKE '%{$keyword}%' 
+    OR movie.genre LIKE '%{$keyword}%'");
     $stmt->execute();
 
     $result = $stmt->get_result();

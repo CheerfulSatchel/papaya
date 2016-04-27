@@ -67,7 +67,7 @@ $.ajax({
     success: function (response) {
         var trHTML = "";
         $.each(response, function (i, val) {
-            trHTML += "<tr><td>" + val.title + "</td><td>" + val.director + "</td><td>" + val.genre + "</td><td>" + val.price + "</td><td>" + val.quantity +
+            trHTML += "<tr><td>" + val.title + "</td><td>" + val.director + "</td><td>" + val.actor_names + "</td><td>"+ val.genre + "</td><td>" + val.rating + "</td><td>" + val.price +
 						 "</td><td><button type='button' class='btn-md' onClick=\"(buyMovie('" + val.item_id + "," + email + "'))\">Add To Cart</button></td>";
 
         });
@@ -112,9 +112,10 @@ $.ajax({
 <tr>
 <th> Name </th>
 <th> Director </th>
+<th> Actors </th>
 <th> Genre </th>
+<th> Rating </th>
 <th> Price </th>
-<th> Quantity </th>
 <th> </th>
 
 

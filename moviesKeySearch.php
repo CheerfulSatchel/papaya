@@ -31,7 +31,7 @@
       success: function (response) {
         var trHTML = "";
         $.each(response, function (i, val) {
-            trHTML += "<tr><td>" + val.title + "</td><td>" + val.director + "</td><td>" + val.genre + "</td><td>" + val.price + "</td><td>" + val.quantity +
+            trHTML += "<tr><td>" + val.title + "</td><td>" + val.director + "</td><td>" + val.actor_names + "</td><td>" + val.genre + "</td><td>" + val.price + "</td><td>" + val.quantity +
 						 "</td><td><button type='button' class='btn-md' onClick=\"(buyMovie('" + val.item_id + "," + email + "'))\">Add To Cart</button></td>";
         });
         ($("#table tbody")).html(trHTML); //changes the contents of the table body to add the html rows filled in with the data from the JSON object
@@ -66,6 +66,7 @@
       <tr>
         <th> Name </th>
         <th> Director </th>
+        <th> Actors </th>
         <th> Genre </th>
         <th> Rating </th>
         <th> Price </th>

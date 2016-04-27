@@ -1,11 +1,12 @@
 <?php
 
+
 	include 'databaseinfo.php'; //database information to access MySQL
 
 	if (isset($_POST['email'])){
     	$email = $_POST['email'];
   	}
-  	// $email = "tj@virginia.edu";
+  	echo $email;
 
 
   $stmt = $db->prepare("SELECT * FROM Buy WHERE email = ?");
@@ -23,6 +24,10 @@
 
    $insertSell->bind_param("dsds", $item_id, $email, $count, $timestamp);
 
+  // $updateCount = $db->prepare("UPDATE item SET item.quantity = item.quantity - 1 WHERE item_id = ?");
+
+  // $updateCount->bind_param("d", $item_id);
+
 
   	while($row = $result->fetch_array()){
 
@@ -35,10 +40,13 @@
   		$timestamp = $row['timestamp'];
 
 
-  		$insertSell->execute() or die();
+  		$insertSell->execute();
 
-		//  echo $row['email']. " - ". $row['item_id'] . " - ". $row['Count'] ;
-		// echo "<br />";
+ 		// $updateCount->execute() or die('update count failed: ' . ($db->error));
+
+
+		 echo $row['email']. " - ". $row['item_id'] . " - ". $row['Count'] ;
+		echo "<br />";
 }
 
 
@@ -49,7 +57,15 @@
     $deletefrombuyQuery->execute();    
 
     $deletefrombuyQuery->close();
+
+	$insertSell->close();
+    // $updateCount->close();
     $db->close();
+
+    echo "Yay";
+
+
+
 
   }
 

@@ -19,10 +19,9 @@
 
 <script type="text/javascript">
 
-function updateTable() { //Ajax call to update the table to read by the user
+function updateTable(email) { //Ajax call to update the table to read by the user
   //alert("Inside update table");
   //alert(arguments[0]);
-  var email = arguments[0];
    $.ajax({ //makes the directory update with the newest row
        url: 'readBuy.php',
        type: 'POST',
@@ -117,13 +116,14 @@ $.ajax({
 function finalCheckout(email) {
   // alert("HEY");
   // alert(arguments[0]);
+  // alert(email);
    $.ajax({ //makes the directory update with the newest row
        url: 'updateSell.php',
        type: 'POST',
        dataType: 'json',
-       data: ({userName: email}),
+       data: ({email: email}),
        success: function (response) {
-         alert("Success");
+         alert("Thanks for being our loyal customer. We hope there are more Papayas in your future!");
        },
        error:function(exception){alert(exception)}
     });

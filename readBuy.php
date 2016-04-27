@@ -4,8 +4,8 @@
   session_start();
  	include 'databaseinfo.php';
  	//get all the rows in the mysql database
-  $email = "tj@virginia.edu";
-  //$email = $_POST['userName'];
+  // $email = "tj@virginia.edu";
+  $email = $_POST['userName'];
  	$stmt = $db->prepare("SELECT * FROM Buy NATURAL JOIN item NATURAL JOIN movie WHERE email = ?");
   $stmt->bind_param("s", $email);
   $stmt->execute();

@@ -18,6 +18,44 @@
 
   <script type="text/javascript">
 
+  function buyMovie() {
+    var a = arguments[0];
+    alert(a);
+
+    var deleteConfirm = confirm("Are you sure you want to buy this item?");
+    if (deleteConfirm == true) {
+      var id = "";
+      var email = "";
+      var found = 0;
+      for(var i = 0; i < a.length; i++) {
+        if(found == 0) {
+          var n = a.charAt(i);
+          if(n != ",") {
+            id += n;
+          } else {
+            found = 1;
+          }
+        } else {
+          var n = a.charAt(i);
+          email += n;
+        }
+      }
+      alert(id);
+      alert(email);
+
+         $.ajax({ //submits the values that were entered into the JavaScript form above by the user to be processed by processCreate.php
+          type: "POST",
+          url:"addMusicBuy.php",
+          data: {id: id, email: email},
+          success:function(data) {
+              alert("HEy, we made it into update");
+              setTimeout(updateTable(email), 3000); //Allows the database time to process the update
+          }
+       });
+
+    }
+  }
+
   $( document ).ready(function() {
     //var email = "tj@virginia.edu";
     var email = '<?php echo $_SESSION['email']?>';
@@ -33,7 +71,7 @@
       success: function (response) {
         var trHTML = "";
         $.each(response, function (i, val) {
-            trHTML += "<tr><td>" + val.title + "</td><td>" + val.director + "</td><td>" + val.actor_names + "</td><td>" + val.genre + "</td><td>" + val.price + "</td><td>" + val.quantity +
+            trHTML += "<tr><td>" + val.title + "</td><td>" + val.director + "</td><td>" + val.actor_names + "</td><td>" + val.genre + "</td><td>" + val.rating + "</td><td>" + val.price +
 						 "</td><td><button type='button' class='btn-md' onClick=\"(buyMovie('" + val.item_id + "," + email + "'))\">Add To Cart</button></td>";
         });
         ($("#table tbody")).html(trHTML); //changes the contents of the table body to add the html rows filled in with the data from the JSON object

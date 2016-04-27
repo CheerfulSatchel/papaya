@@ -59,7 +59,7 @@
 
   $( document ).ready(function() {
     //var email = "tj@virginia.edu"; //TO BE CHANGED TO SESSION VARIABLE
-    var email = $_SESSION['email'];
+    var email = '<?php echo $_SESSION['email']?>';
     var keyword = '<?php echo $_SESSION['keyword']?>';
     alert(email);
     alert(keyword);

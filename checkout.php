@@ -86,7 +86,7 @@ $( document ).ready(function() {
 
 
 //Ajax request to get the json data of the mysql results from read.php and display it on the table
-var email = "tj@virginia.edu";
+var email = '<?php echo $_SESSION['email'];?>';
 $.ajax({
     url: 'readBuy.php',
     type: 'POST',
@@ -135,6 +135,12 @@ function finalCheckout() {
 
 
 
+
+
+  window.location.replace("index.html");
+}
+
+function back() {
   window.location.replace("index.html");
 }
 
@@ -164,7 +170,7 @@ function finalCheckout() {
 	   <tr height="30px">
 	      <td colspan="6">
 	         <div id="buttonLeft">
-             <button type="button">Back</button>
+             <button type="button" onClick='back()'>Back</button>
 	         </div>
            <div id="buttonRight">
              <button type="button" onClick='finalCheckout(<?php session_start(); echo $_SESSION['email'] ?>)'>Checkout</button>
@@ -175,6 +181,7 @@ function finalCheckout() {
     <tr>
       <th> Name </th>
       <th> Price </th>
+      <th> </th>
     </tr>
   </thead>
 
@@ -182,6 +189,10 @@ function finalCheckout() {
   </tbody>
 
 </table>
+
+<?php
+  echo "$_SESSION['email']";
+ ?>
 
 </body>
 

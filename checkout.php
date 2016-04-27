@@ -235,9 +235,9 @@ function back() {
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
                         <li><a href="index.html">Home</a></li>
-                        <li><a href="movies.html">Movies</a></li>
-                        <li><a href="music.html">Music</a></li>
-                        <li><a href="videoGames.html">Video Games</a></li>
+                        <li><a href="movies.php">Movies</a></li>
+                        <li><a href="music.php">Music</a></li>
+                        <li><a href="videoGames.php">Video Games</a></li>
                     </ul>
                 </div>
             </div>
@@ -301,7 +301,7 @@ function back() {
      <tr height="30px">
         <td colspan="6">
            <div id="buttonLeft">
-             <button type="button" onClick='back()'>Back</button>
+            Total price:
            </div>
            <div id="buttonRight">
              <button type="button" onClick='finalCheckout(<?php session_start(); echo $_SESSION['email'] ?>)'>Checkout</button>

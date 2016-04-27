@@ -1,6 +1,8 @@
 <html>
   <head>
 
+    <?php session_start(); ?>
+
   <!-- JQuery Stuff -->
   <script src="js/jquery.min.js"></script>
   <!-- End JQUERY Stuff -->
@@ -18,13 +20,14 @@
 
   $( document ).ready(function() {
     var email = "tj@virginia.edu";
-    var keyword = <?php echo $_SESSION['keyword']?>;
+    var keyword = '<?php echo $_SESSION['keyword']?>';
     alert(email);
     alert(keyword);
     //Ajax request to get the json data of the mysql results from read.php and display it on the table
     $.ajax({
       url: 'readMoviesKeyword.php',
       dataType: 'json',
+      data: {keyword:keyword},
       success: function (response) {
         var trHTML = "";
         $.each(response, function (i, val) {

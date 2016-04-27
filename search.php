@@ -10,22 +10,16 @@
 		$keyword = $_POST['keywords'];
 	}
 	echo "$keyword";
-	/*if(isset($_POST['category'])) {
-		$category = $_POST['category'];
-		if(isset($_GET['keywords'])) {
-			$keyword = $_GET['keywords'];
-			$_SESSION['keyword'] = $keyword;
-		} else {
-			echo "Keyword was not set";
-		}
-		if($category == "movies") {
-			header("Location: moviesKeySearch.html");
-		} else if ($category == "video games") {
-			header("Location: videoGamesKeySearch.html");
-		} else if ($category == "songs") {
-			header("Location: songsKeySearch.html");
-		}
-	}*/
+	$_SESSION['keyword'] = $keyword;
+
+	if($category == "Movies") {
+		header("Location: moviesKeySearch.php");
+	} else if ($category == "Video games") {
+		header("Location: videoGamesKeySearch.php");
+	} else if ($category == "Music") {
+		header("Location: songsKeySearch.php");
+	}
+
 ?>
 
 <?php //ini_set('display_errors', 1); ?>

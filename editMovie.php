@@ -30,7 +30,7 @@
         $.ajax({ //submits the values that were entered into the JavaScript form above by the user to be processed by processCreate.php
           type: "POST",
           url:"processEditMovie.php",
-          data: {id: <?php echo $_GET["id"]?>, movieName: $("#editmovieName").val(), director: $("#editdirector").val(), rating: $("#editrating").val(), genre: $("#editgenre").val(), price: $("#editprice").val(), quantity: $("#editquantity").val()},
+          data: {id: <?php echo $_GET["id"]?>, movieName: $("#editmovieName").val(), director: $("#editdirector").val(), actor1: $("#editActor1").val(), actor2: $("#editActor2").val(), actor3: $("#editActor3").val(), rating: $("#editrating").val(), genre: $("#editgenre").val(), price: $("#editprice").val(), quantity: $("#editquantity").val()},
           dataType: 'html',
           success:function(data) {
                 alert('You have updated ' + $("#editmovieName").val() + '!');
@@ -50,7 +50,7 @@
             success: function (response) {
             var trHTML = "";
             $.each(response, function (i, val) {
-                trHTML += "<tr><td>" + val.title + "</td><td>" + val.director + "</td><td>" + val.genre + "</td><td>" + val.rating + "</td><td>" + val.price + "</td><td>" + val.quantity + "</td><td>" + "<div class='btn-group'> <button id='edit-" + val.item_id + "' type='button' class='btn-md' onClick='editClick(" + val.item_id + ")'>Edit This Entry</button> <button id='delete-" + val.item_id + "' type='button' class='btn-md' onClick='deleteClick(" + val.item_id + ")'>Delete</button></div> </td>" +  "</tr>";
+                trHTML += "<tr><td>" + val.title + "</td><td>" + val.director + "</td><td>" + val.actor_names + "</td><td>" + val.genre + "</td><td>" + val.rating + "</td><td>" + val.price + "</td><td>" + val.quantity + "</td><td>" + "<div class='btn-group'> <button id='edit-" + val.item_id + "' type='button' class='btn-md' onClick='editClick(" + val.item_id + ")'>Edit This Entry</button> <button id='delete-" + val.item_id + "' type='button' class='btn-md' onClick='deleteClick(" + val.item_id + ")'>Delete</button></div> </td>" +  "</tr>";
 
             });
             ($("#table tbody")).html(trHTML); //changes the contents of the table body to add the html rows filled in with the data from the JSON object
@@ -109,7 +109,7 @@ if (isset($_GET["id"])) { //Check if the get variable is empty and if not, do th
 
 	$id = $_GET["id"]; //get the unique id of the record that each person has in the mysql table
 
-	$stmt = $db->prepare("select item.item_id, movie.title, movie.director, actors.actor_names, movie.genre, movie.rating, item.price, item.quantity FROM (movie NATURAL JOIN item)  WHERE item.item_id= ? ORDER BY movie.title, movie.director, actors.actor_names, movie.genre, movie.rating");
+	$stmt = $db->prepare("select item.item_id, movie.title, movie.director, actors.actor_names, movie.genre, movie.rating, item.price, item.quantity FROM (movie NATURAL JOIN item NATURAL JOIN actors)  WHERE item.item_id= ? ORDER BY movie.title, movie.director, actors.actor_names, movie.genre, movie.rating");
     $stmt->bind_param("d", $id); 
     $stmt->execute();
 
@@ -125,11 +125,26 @@ if (isset($_GET["id"])) { //Check if the get variable is empty and if not, do th
 
         $actor = explode(",", $actors);
 
-        $actor1 = trim($actor[0]);
+        $actor1 = "";
 
-        $actor2 = trim($actor[1]);
+        if (isset($actor[0]) && $actor[0] != "" ) {
+            $actor1 = trim($actor[0]);
 
-        $actor3 = trim($actor[2]);
+        }
+
+        $actor2 = "";
+
+        if (isset($actor[1]) && $actor[1] != "" ) {
+            $actor2 = trim($actor[1]);
+
+        }
+
+        $actor3 = "";
+
+        if (isset($actor[2]) && $actor[2] != "" ) {
+            $actor3 = trim($actor[2]);
+
+        }
 
 	   	$director = $data['director'];
 
@@ -156,6 +171,12 @@ if (isset($_GET["id"])) { //Check if the get variable is empty and if not, do th
     <label>Movie Name*  </label> <input type="text" id="editmovieName" value='<?php echo $title ?>'> </br> </br>
 
         <label>Director  </label> <input type="text" id="editdirector"  value='<?php echo $director ?>'> </br> </br>
+
+        <label>Actor Name  </label> <input type="text" id="editActor1"  value='<?php echo $actor1 ?>'> </br> </br>
+        
+        <label>Actor Name  </label> <input type="text" id="editActor2"  value='<?php echo $actor2 ?>'> </br> </br>
+        
+        <label>Actor Name  </label> <input type="text" id="editActor3"  value='<?php echo $actor3 ?>'> </br> </br>
 
         <label>Rating  </label> <select id="editrating">
 

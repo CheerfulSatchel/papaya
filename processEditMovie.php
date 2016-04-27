@@ -18,6 +18,34 @@
     $director = $_POST['director'];
   }
 
+  if (isset($_POST['actor1']) && $_POST['actor1'] != ""){ 
+    $actor1 = $_POST['actor1'];
+  }
+
+  if (isset($_POST['actor2']) && $_POST['actor2'] != ""){ 
+    $actor2 = $_POST['actor2'];
+  }
+
+  if (isset($_POST['actor3']) && $_POST['actor3'] != ""){ 
+    $actor3 = $_POST['actor3'];
+  }
+
+  $actors = "";
+
+  if (isset($actor1)) {
+    $actors = $actor1;
+  }
+
+    if (isset($actor2)) {
+    $actors = $actors . ", " . $actor2;
+
+  }
+
+    if (isset($actor3)) {
+    $actors = $actors . ", " . $actor3;
+
+  } //$actors now has all of the actors in one string separated by commas
+
   if (isset($_POST['rating'])){
     $rating = $_POST['rating'];
   }
@@ -35,31 +63,7 @@
   $quantity = $_POST['quantity'];
 }
 
-// echo $gameName;
 
-// echo "";
-
-// echo $publisher;
-
-// echo "";
-
-// echo $rating;
-
-// echo "";
-
-// echo $genre;
-
-// echo "";
-
-// echo $price;
-
-// echo "";
-
-
-// echo $quantity;
-
-
-// echo "";
 
 
    $editMovieQuery= $db->prepare("UPDATE movie SET title= ?, director= ?, rating= ?, genre=? WHERE item_id= ?") or die("Your movie update couldn't be done: " . $db->error); //Update the movie's properties for the unique game
@@ -80,9 +84,18 @@
 
         // printf("Can't enter data into the video movie table: %s.\n", $db->error);
 
+    $editActorsQuery = $db->prepare("UPDATE actors SET actor_names= ? WHERE item_id= ?");
+
+    $editActorsQuery->bind_param("sd", $actors, $id); 
+
+    $editActorsQuery->execute();
+
+        // printf("Can't enter data into the video movie table: %s.\n", $db->error);
+
 
     $editMovieQuery->close();
     $editItemQuery->close();
+    $editActorsQuery->close();
     $db->close();
 
  

@@ -66,7 +66,7 @@ $("#cancel").click(function(){
             }
 
 
-    // window.parent.$("#addMovieWindow").data("kendoWindow").close(); //Closes the Kendo Window after Ok in the alert box is clicked
+    window.parent.$("#addMovieWindow").data("kendoWindow").close(); //Closes the Kendo Window after Ok in the alert box is clicked
 
         $.ajax({ //submits the values that were entered into the JavaScript form above by the user to be processed by processAddGame.php
           type: "POST",

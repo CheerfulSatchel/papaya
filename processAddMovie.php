@@ -29,15 +29,17 @@
   $actors = "";
 
   if (isset($actor1)) {
-    $actors . ", " . $actor1;
+    $actors = $actor1;
   }
 
     if (isset($actor2)) {
-    $actors . ", " . $actor2;
+    $actors = $actors . ", " . $actor2;
+
   }
 
     if (isset($actor3)) {
-    $actors . ", " . $actor3;
+    $actors = $actors . ", " . $actor3;
+
   } //$actors now has all of the actors in one string separated by commas
 
   if (isset($_POST['genre'])){
@@ -55,8 +57,6 @@
   if (isset($_POST['quantity'])){
   $quantity = $_POST['quantity'];
 }
-
-
 
     $itemQuery = $db->prepare("INSERT INTO item(price, quantity) VALUES (?, ?)"); //Insert the price and quantity into the item table. The item_id column automatically increments every time an entry is added.
 

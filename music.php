@@ -39,7 +39,7 @@ function updateTable() { //Ajax call to update the table to read by the user
 
 function buyMusic() {
   var a = arguments[0];
-  //alert(a);
+  alert(a);
 
   var deleteConfirm = confirm("Are you sure you want to buy this item?");
   if (deleteConfirm == true) {
